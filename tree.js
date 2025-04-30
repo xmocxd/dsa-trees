@@ -34,14 +34,40 @@ class Tree {
   /** countEvens(): count all of the nodes in the tree with even values. */
 
   countEvens() {
+    let stack = [this.root];
+    let count = 0;
 
+    while (stack.length) {
+      const current = stack.pop();
+      if (current === null) return 0;
+      count += (current.val % 2 === 0) ? 1 : 0;
+      
+      for (let child of current.children) {
+        stack.push(child);
+      }
+    }
+    
+    return count;
   }
 
   /** numGreater(lowerBound): return a count of the number of nodes
    * whose value is greater than lowerBound. */
 
   numGreater(lowerBound) {
+    let stack = [this.root];
+    let count = 0;
 
+    while (stack.length) {
+      const current = stack.pop();
+      if (current === null) return 0;
+      count += (current.val > lowerBound) ? 1 : 0;
+      
+      for (let child of current.children) {
+        stack.push(child);
+      }
+    }
+    
+    return count;
   }
 }
 
